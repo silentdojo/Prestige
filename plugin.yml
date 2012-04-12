@@ -1,0 +1,11 @@
+name: Prestige
+main: me.silentdojo.prestige.Prestige
+version: '1.0'
+depend: [Vault, mcMMO]
+authors:
+  - silentdojo1
+  - bozzobrain
+description: Prestige will eventually work!!
+commands:
+    test:
+    prestige:
