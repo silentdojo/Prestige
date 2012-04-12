@@ -42,13 +42,16 @@ public class Prestige extends JavaPlugin {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
     	if(command.getName().equalsIgnoreCase("prestige")){
 	    	if(args.length == 0){
-	    		sender.sendMessage(ChatColor.AQUA + "" + ChatColor.UNDERLINE + "Prestige is a new way to advance your skills.");
-	    		sender.sendMessage("| " + ChatColor.AQUA + "Gain amazing new abilities by focusing on specific Skills.");
-	    		sender.sendMessage("| " + ChatColor.AQUA + "Choose wisely. Benefits come at a price!");
-	    		sender.sendMessage("| " + ChatColor.AQUA + "Each Prestige resets your Skill Level.");
-	    		sender.sendMessage("| " + ChatColor.AQUA + "PvP Skill Prestige will remove a PvE Ability.");
-	    		sender.sendMessage("| " + ChatColor.AQUA + "PvE Skill Prestige will remove a PvP Ability.");
-	    		sender.sendMessage("| " + ChatColor.DARK_RED + "Use " + ChatColor.ITALIC + "/prestige <Skillname>");
+	    		sender.sendMessage(ChatColor.UNDERLINE + "                                                                              ");
+	    		sender.sendMessage(ChatColor.DARK_GREEN + "Prestige is a new way to advance your skills.");
+	    		sender.sendMessage(" - " + ChatColor.AQUA + "Gain amazing new abilities by focusing on specific Skills.");
+	    		sender.sendMessage(" - " + ChatColor.AQUA + "Choose wisely. Benefits come at a price!");
+	    		sender.sendMessage(" - " + ChatColor.AQUA + "Each Prestige resets your Skill Level.");
+	    		sender.sendMessage(" - " + ChatColor.AQUA + "PvP Skill Prestige will remove a PvE Ability.");
+	    		sender.sendMessage(" - " + ChatColor.AQUA + "PvE Skill Prestige will remove a PvP Ability.");
+	    		sender.sendMessage(" - " + ChatColor.DARK_RED + "Use " + ChatColor.ITALIC + "/prestige <Skillname>");
+	    		sender.sendMessage(ChatColor.UNDERLINE + "                                                                              ");
+	    		sender.sendMessage(" ");
 	    		return false;
 	    	}
 			
