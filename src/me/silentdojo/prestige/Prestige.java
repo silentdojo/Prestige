@@ -42,7 +42,7 @@ public class Prestige extends JavaPlugin {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
     	if(command.getName().equalsIgnoreCase("prestige")){
 	    	if(args.length == 0){
-	    		sender.sendMessage("Prestige is a new way to advance your skills.");
+	    		sender.sendMessage(ChatColor.AQUA + "Prestige is a new way to advance your skills.");
 	    		sender.sendMessage("Gain amazing new abilities by focusing on specific Skills.");
 	    		sender.sendMessage("Choose wisely. Benefits come at a price!");
 	 			sender.sendMessage("Each Prestige resets your Skill Level.");
@@ -172,7 +172,7 @@ public class Prestige extends JavaPlugin {
         	
         	}
         	
-        	((CommandSender) player).sendMessage("Thanks you have just presiged");
+//        	((CommandSender) player).sendMessage("Thanks you have just presiged");
         	
         	return true;
         	}
