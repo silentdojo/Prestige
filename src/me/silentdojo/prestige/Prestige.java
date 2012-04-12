@@ -27,7 +27,7 @@ public class Prestige extends JavaPlugin {
     @Override
     public void onDisable() {
     	PluginDescriptionFile pdf = this.getDescription();
-    	this.log.info(pdf.getName() + pdf.getVersion() + ChatColor.BLUE + " You feel Prestigous!?");
+    	this.log.info(pdf.getName() + pdf.getVersion() + " You feel Prestigous!?");
     }
     
     @Override
@@ -187,13 +187,4 @@ public class Prestige extends JavaPlugin {
     		return false;
 		return false;
 }
-
-/*	private String[] addAnotherPlayer(String[] prestigedPlayers2, String pP) {
-		String[] temp = new String[(prestigedPlayers2.length+1)];
-		for (int i=0;i<prestigedPlayers2.length;i++){
-			temp[i]=prestigedPlayers2[i];
-		}
-		return temp;		
-	}*/
-  
 }
