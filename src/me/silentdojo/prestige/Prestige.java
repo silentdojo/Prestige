@@ -10,6 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -20,14 +21,13 @@ import com.gmail.nossr50.datatypes.SkillType;
 import com.gmail.nossr50.skills.Skills;
 
 public class Prestige extends JavaPlugin {
+	protected static Prestige plugin;
 	public static Permission permission = null;
 	public final Logger log = Logger.getLogger("Minecraft");
-
 	
     @Override
     public void onDisable() {
-    	PluginDescriptionFile pdf = this.getDescription();
-    	this.log.info(pdf.getName() + pdf.getVersion() + " You feel Prestigous!?");
+    	this.log.info(" You feel Prestigous!?");
     }
     
     @Override
@@ -36,9 +36,9 @@ public class Prestige extends JavaPlugin {
     	RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
         permission = rsp.getProvider();
         this.log.info("[" + pdf.getName() + "]" + " Prestige Bitch");
-    }
-    
-    @Override
+		}
+   
+	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
     	if(command.getName().equalsIgnoreCase("prestige")){
 	    	if(args.length == 0){
@@ -54,11 +54,11 @@ public class Prestige extends JavaPlugin {
 	    		sender.sendMessage(" ");
 	    		return false;
 	    	}
-			
+	    	
     	Player player = (Player) sender;
 		PlayerProfile PP = Users.getProfile(player);
     	int skillLevel = 0;
-    	SkillType type = null; 	
+    	SkillType type = null;
     	
 		type = Skills.getSkillType(args[0]);
 		skillLevel = PP.getSkillLevel(type);		
@@ -68,6 +68,8 @@ public class Prestige extends JavaPlugin {
         	case ACROBATICS: {
         		if (skillLevel == 1000){
         		permission.playerAdd(player, "mcmmo.ability.acrobatics.gracefulroll");
+        		permission.playerAdd(player, "Prestige.fly");
+				player.setAllowFlight(true);
         		sender.sendMessage("you have upgraded your acrobatics skill");
         		}else
         			sender.sendMessage("Skill Level is Not 1000 yet try again later!!");
@@ -174,20 +176,22 @@ public class Prestige extends JavaPlugin {
         		}
         	
         	}
-        	
-//        	((CommandSender) player).sendMessage("Thanks you have just presiged");
-        	
         	return true;
         	}
-		
+		// Test Command
     	if(command.getName().equalsIgnoreCase("test")){
-    		Player player = (Player) sender;
-    		PlayerProfile PP = Users.getProfile(player);
-    		PP.addLevels(SkillType.EXCAVATION, 1000);
-    		sender.sendMessage("Your off to a good start");    	
-        	}
-    	else
+    		if(args.length == 0){
+    			sender.sendMessage("Use /test <SkillName>");
+    		}else{
+    			Player player = (Player) sender;
+	    		PlayerProfile PP = Users.getProfile(player);
+	    		SkillType type2 = Skills.getSkillType(args[0]);
+				PP.addLevels(type2, 1000);
+	    		sender.sendMessage("You added 1000 Levels to " + type2);    	
+	    		}
     		return false;
+    		}
 		return false;
-}
+    }
+    
 }

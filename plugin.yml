@@ -8,4 +8,8 @@ authors:
 description: Prestige will eventually work!!
 commands:
     test:
+    test2:
     prestige:
+permissions:
+    Prestige.fly:
+        description: Allow fly ability.
