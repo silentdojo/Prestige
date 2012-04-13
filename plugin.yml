@@ -10,6 +10,4 @@ commands:
     test:
     test2:
     prestige:
-permissions:
-    Prestige.fly:
-        description: Allow fly ability.
+    powerup:
