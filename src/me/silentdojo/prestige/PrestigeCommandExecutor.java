@@ -22,8 +22,8 @@ public class PrestigeCommandExecutor implements CommandExecutor{
 	
 	private Permission permission;
 	
-	public PrestigeCommandExecutor(Prestige plugin, Permission permission){
-		
+	public PrestigeCommandExecutor(Prestige plugin, Permission permission1){
+		permission=permission1;
 		
 	}
 	
@@ -52,7 +52,7 @@ public class PrestigeCommandExecutor implements CommandExecutor{
 		type = Skills.getSkillType(args[0]);
 		skillLevel = PP.getSkillLevel(type);		
 		
-        	PP.modifySkill(type, 0);
+        	PP.modifyskill(type, 0);
         	switch(type){
         	case ACROBATICS: {
         		if (skillLevel >= 1000){
