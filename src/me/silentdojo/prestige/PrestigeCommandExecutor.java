@@ -174,7 +174,7 @@ public class PrestigeCommandExecutor implements CommandExecutor{
     			Player player = (Player) sender;
 	    		PlayerProfile PP = Users.getProfile(player);
 	    		SkillType type2 = Skills.getSkillType(args[0]);
-				PP.addXP(type2, 1000, player);
+				PP.addLevels(type2, 1000);
 	    		sender.sendMessage("You added 1000 Levels to " + type2);    	
 	    		}
     		return false;
