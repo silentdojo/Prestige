@@ -52,7 +52,7 @@ public class PrestigeCommandExecutor implements CommandExecutor{
 		type = Skills.getSkillType(args[0]);
 		skillLevel = PP.getSkillLevel(type);		
 		
-        	PP.modifySkill(type, 0);
+        	PP.modifyskill(type, 0);
         	switch(type){
         	case ACROBATICS: {
         		if (skillLevel >= 1000){
@@ -174,7 +174,7 @@ public class PrestigeCommandExecutor implements CommandExecutor{
     			Player player = (Player) sender;
 	    		PlayerProfile PP = Users.getProfile(player);
 	    		SkillType type2 = Skills.getSkillType(args[0]);
-				PP.addLevels(type2, 1000);
+				PP.addXP(type2, 1000, player);
 	    		sender.sendMessage("You added 1000 Levels to " + type2);    	
 	    		}
     		return false;
