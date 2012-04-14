@@ -46,10 +46,4 @@ public class Prestige extends JavaPlugin {
     	Block b = w.getBlockAt(loc);
     	b.setTypeId(1);
     }
-//    public void onPlayerMove(PlayerMoveEvent evt) {
-//    	Player player = evt.getPlayer();
-//    	int hunger = player.getFoodLevel();
-//    	if(player.getAllowFlight() == true && hunger < 10){
-//    		player.setAllowFlight(false);
-//    	}
-    }
+}
