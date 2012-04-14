@@ -52,7 +52,7 @@ public class PrestigeCommandExecutor implements CommandExecutor{
 		type = Skills.getSkillType(args[0]);
 		skillLevel = PP.getSkillLevel(type);		
 		
-        	PP.modifyskill(type, 0);
+        	PP.modifySkill(type, 0);
         	switch(type){
         	case ACROBATICS: {
         		if (skillLevel >= 1000){
