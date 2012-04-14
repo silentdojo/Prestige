@@ -22,8 +22,8 @@ public class PrestigeCommandExecutor implements CommandExecutor{
 	
 	private Permission permission;
 	
-	public PrestigeCommandExecutor(Prestige plugin, Permission permission){
-		
+	public PrestigeCommandExecutor(Prestige plugin, Permission permission1){
+		permission=permission1;
 		
 	}
 	
