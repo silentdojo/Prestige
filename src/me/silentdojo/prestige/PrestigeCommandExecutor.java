@@ -2,6 +2,7 @@ package me.silentdojo.prestige;
 
 import net.milkbowl.vault.permission.Permission;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -9,6 +10,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -21,10 +23,10 @@ public class PrestigeCommandExecutor implements CommandExecutor{
 
 	
 	private Permission permission;
-	
-	public PrestigeCommandExecutor(Prestige plugin, Permission permission1){
+	Plugin plugin;
+	public PrestigeCommandExecutor(Prestige plugin1, Permission permission1){
 		permission=permission1;
-		
+		plugin=plugin1;
 		
 	}
 	
@@ -193,17 +195,24 @@ public class PrestigeCommandExecutor implements CommandExecutor{
     			
 			sender.sendMessage("look maw, issa flying!");
 			
-			Player player = (Player) sender;
+			final Player player = (Player) sender;
 			PlayerProfile PP = Users.getProfile(player);
 			int level=PP.getSkillLevel(SkillType.ACROBATICS);
-			player.setAllowFlight(!player.getAllowFlight());
-			long time=System.nanoTime();
-			do{
-				player.setFlying(true);
-			}while((System.nanoTime())<time+(level*10000000));			
-			player.setFlying(false);
-			player.setAllowFlight(!player.getAllowFlight());
-			sender.sendMessage("all done");  
+			player.setAllowFlight(!player.getAllowFlight());			
+			player.setFlying(true);
+			Bukkit.getServer().getScheduler().scheduleAsyncDelayedTask(plugin, new Runnable()
+			{
+
+				@Override
+				public void run() {
+					player.setFlying(false);
+					player.setAllowFlight(!player.getAllowFlight());
+					player.sendMessage("all done");  
+				}
+				
+			},level);
+					
+			
 		}	
     		
     		
