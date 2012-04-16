@@ -25,11 +25,29 @@ public class PrestigeCommandExecutor implements CommandExecutor{
 	public PrestigeCommandExecutor(Prestige plugin, Permission permission1){
 		permission=permission1;
 		
+		
 	}
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-    	if(command.getName().equalsIgnoreCase("prestige")){
+		
+		
+		
+		if(command.getName().equalsIgnoreCase("fly")){			
+			sender.sendMessage("Hello??");
+//			if(args.length==0){
+//				
+//				Player player = (Player) sender;
+//				sender.sendMessage("look maw, issa flying!");
+//				for (int i=0;i<(Users.getProfile((Player) sender)).getSkillLevel(SkillType.ACROBATICS);i++){
+//					player.setFlying(true);	    				   			
+//				}
+//				player.setFlying(false);
+//				sender.sendMessage("all done");  
+//			}		
+			return false;
+		}
+		if(command.getName().equalsIgnoreCase("prestige")){
 	    	if(args.length == 0){
 	    		sender.sendMessage(ChatColor.UNDERLINE + "                                                                              ");
 	    		sender.sendMessage(ChatColor.DARK_GREEN + "Prestige is a new way to advance your skills.");
@@ -168,15 +186,41 @@ public class PrestigeCommandExecutor implements CommandExecutor{
         	}
 		// Test Command
     	if(command.getName().equalsIgnoreCase("test")){
-    		if(args.length == 0){
-    			sender.sendMessage("Use /test <SkillName>");
-    		}else{
-    			Player player = (Player) sender;
-	    		PlayerProfile PP = Users.getProfile(player);
-	    		SkillType type2 = Skills.getSkillType(args[0]);
-				PP.addLevels(type2, 1000);
-	    		sender.sendMessage("You added 1000 Levels to " + type2);    	
-	    		}
+			
+    		
+    		
+    		if(args.length==0){	
+    			
+			sender.sendMessage("look maw, issa flying!");
+			
+			Player player = (Player) sender;
+			PlayerProfile PP = Users.getProfile(player);
+			int level=PP.getSkillLevel(SkillType.ACROBATICS);
+			player.setAllowFlight(!player.getAllowFlight());
+			long time=System.nanoTime();
+			do{
+				player.setFlying(true);
+			}while((System.nanoTime())<time+(level*10000000));			
+			player.setFlying(false);
+			player.setAllowFlight(!player.getAllowFlight());
+			sender.sendMessage("all done");  
+		}	
+    		
+    		
+    		
+    		
+    		
+//    		if(args.length == 0){
+//    			sender.sendMessage("Use /test <SkillName>");
+//    		}else{
+//    			Player player = (Player) sender;
+//	    		PlayerProfile PP = Users.getProfile(player);
+//	    		SkillType type2 = Skills.getSkillType(args[0]);
+//				PP.addLevels(type2, 1000);
+//	    		sender.sendMessage("You added 1000 Levels to " + type2);    	
+//	    		}
+//    		
+    		
     		return false;
     		}
     	// PowerUp Command
