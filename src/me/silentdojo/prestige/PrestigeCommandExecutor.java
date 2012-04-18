@@ -2,6 +2,7 @@ package me.silentdojo.prestige;
 
 import net.milkbowl.vault.permission.Permission;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -9,6 +10,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -19,17 +21,35 @@ import com.gmail.nossr50.skills.Skills;
 
 public class PrestigeCommandExecutor implements CommandExecutor{
 
-	
+
 	private Permission permission;
-	
-	public PrestigeCommandExecutor(Prestige plugin, Permission permission1){
+	Plugin plugin;
+	public PrestigeCommandExecutor(Prestige plugin1, Permission permission1){
 		permission=permission1;
-		
+		plugin=plugin1;
+
 	}
-	
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-    	if(command.getName().equalsIgnoreCase("prestige")){
+
+
+
+		if(command.getName().equalsIgnoreCase("fly")){			
+			sender.sendMessage("Hello??");
+//			if(args.length==0){
+//				
+//				Player player = (Player) sender;
+//				sender.sendMessage("look maw, issa flying!");
+//				for (int i=0;i<(Users.getProfile((Player) sender)).getSkillLevel(SkillType.ACROBATICS);i++){
+//					player.setFlying(true);	    				   			
+//				}
+//				player.setFlying(false);
+//				sender.sendMessage("all done");  
+//			}		
+			return false;
+		}
+		if(command.getName().equalsIgnoreCase("prestige")){
 	    	if(args.length == 0){
 	    		sender.sendMessage(ChatColor.UNDERLINE + "                                                                              ");
 	    		sender.sendMessage(ChatColor.DARK_GREEN + "Prestige is a new way to advance your skills.");
@@ -43,7 +63,7 @@ public class PrestigeCommandExecutor implements CommandExecutor{
 	    		sender.sendMessage(" ");
 	    		return false;
 	    	}
-	    	
+
     	Player player = (Player) sender;
 		PlayerProfile PP = Users.getProfile(player);
     	int skillLevel = 0;
@@ -51,7 +71,7 @@ public class PrestigeCommandExecutor implements CommandExecutor{
     	
 		type = Skills.getSkillType(args[0]);
 		skillLevel = PP.getSkillLevel(type);		
-		
+
         	PP.modifySkill(type, 0);
         	switch(type){
         	case ACROBATICS: {
@@ -168,15 +188,48 @@ public class PrestigeCommandExecutor implements CommandExecutor{
         	}
 		// Test Command
     	if(command.getName().equalsIgnoreCase("test")){
-    		if(args.length == 0){
-    			sender.sendMessage("Use /test <SkillName>");
-    		}else{
-    			Player player = (Player) sender;
-	    		PlayerProfile PP = Users.getProfile(player);
-	    		SkillType type2 = Skills.getSkillType(args[0]);
-				PP.addLevels(type2, 1000);
-	    		sender.sendMessage("You added 1000 Levels to " + type2);    	
-	    		}
+
+    		
+    		
+    		if(args.length==0){	
+    			
+			sender.sendMessage("look maw, issa flying!");
+
+			final Player player = (Player) sender;
+			PlayerProfile PP = Users.getProfile(player);
+			int level=PP.getSkillLevel(SkillType.ACROBATICS);
+			player.setAllowFlight(!player.getAllowFlight());			
+			player.setFlying(true);
+			Bukkit.getServer().getScheduler().scheduleAsyncDelayedTask(plugin, new Runnable()
+			{
+
+				@Override
+				public void run() {
+					player.setFlying(false);
+					player.setAllowFlight(!player.getAllowFlight());
+					player.sendMessage("all done");  
+				}
+
+			},level);
+
+
+		}	
+    		
+    		
+    		
+    		
+    		
+//    		if(args.length == 0){
+//    			sender.sendMessage("Use /test <SkillName>");
+//    		}else{
+//    			Player player = (Player) sender;
+//	    		PlayerProfile PP = Users.getProfile(player);
+//	    		SkillType type2 = Skills.getSkillType(args[0]);
+//				PP.addLevels(type2, 1000);
+//	    		sender.sendMessage("You added 1000 Levels to " + type2);    	
+//	    		}
+//    		
+    		
     		return false;
     		}
     	// PowerUp Command
